@@ -1,0 +1,7 @@
+{
+    "compilerOptions": {
+      "types": ["cypress", "node"]
+    },
+    "exclude": ["node_modules", "dist"],
+    "include": ["**/*.ts", "**/*.tsx"]
+  } 

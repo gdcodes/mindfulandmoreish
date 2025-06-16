@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuites name="jest tests" tests="5" failures="0" errors="0" time="1.552">
+  <testsuite name="IndexPage" errors="0" failures="0" skipped="0" timestamp="2025-06-15T20:36:54" time="1.141" tests="5">
+    <testcase classname="IndexPage shows sort select with Newest First option" name="IndexPage shows sort select with Newest First option" time="0.076">
+    </testcase>
+    <testcase classname="IndexPage sorting sorts by newest first by default" name="IndexPage sorting sorts by newest first by default" time="0.064">
+    </testcase>
+    <testcase classname="IndexPage sorting sorts by oldest first" name="IndexPage sorting sorts by oldest first" time="0.037">
+    </testcase>
+    <testcase classname="IndexPage sorting sorts by quickest first" name="IndexPage sorting sorts by quickest first" time="0.03">
+    </testcase>
+    <testcase classname="IndexPage sorting sorts by longest lasting first" name="IndexPage sorting sorts by longest lasting first" time="0.022">
+    </testcase>
+  </testsuite>
+</testsuites>
