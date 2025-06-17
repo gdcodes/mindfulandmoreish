@@ -8,7 +8,7 @@ import { Seo } from './Seo';
 import logo from '../images/logo.png';
 import iconLime from '../images/icon-lime.png';
 import iconGinger from '../images/icon-ginger.png';
-import iconBerry from '../images/icon-berry.png';
+import iconBlueberry from '../images/icon-blueberry.png';
 import iconOrange from '../images/icon-orange.png';
 import '@fontsource/pacifico';
 import '@fontsource/merriweather';
@@ -188,11 +188,11 @@ const MenuButton = styled.button`
 `;
 
 const CloseButton = styled(MenuButton)`
-  position: static;
-  margin-top: 2rem;
+  position: relative;
+  margin: 2rem auto 0;
   width: auto;
-  height: auto;
-  padding: 0.5rem;
+  min-width: 120px;
+  padding: 0.75rem 1.5rem;
   font-size: 1rem;
   border-radius: 8px;
   display: flex;
@@ -200,20 +200,34 @@ const CloseButton = styled(MenuButton)`
   justify-content: center;
   gap: 0.5rem;
   color: ${({ theme }) => theme.colors.leaf};
-  border: none;
-  background: transparent;
+  border: 2px solid ${({ theme }) => theme.colors.leaf};
+  background: rgba(255, 255, 255, 0.9);
+  transition: all 0.2s ease-in-out;
+  
+  &:hover {
+    background: ${({ theme }) => theme.colors.leaf};
+    color: white;
+    transform: translateY(-2px);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  }
+  
   span {
     font-family: 'Merriweather', serif;
     font-weight: normal;
     font-style: italic;
   }
+  
   svg {
-    width: 20px;
-    height: 20px;
+    width: 18px;
+    height: 18px;
+    flex-shrink: 0;
   }
+  
   @media (max-width: 375px) {
     font-size: 0.9rem;
-    margin-top: 1.5rem;
+    margin: 1.5rem auto 0;
+    padding: 0.6rem 1.2rem;
+    min-width: 110px;
   }
 `;
 
@@ -491,9 +505,9 @@ interface LayoutProps {
 }
 
 const animatedIcons = [
-  iconLime, iconGinger, iconBerry,
-  iconLime, iconGinger, iconBerry,
-  iconLime, iconGinger, iconBerry,
+  iconLime, iconGinger, iconBlueberry,
+  iconLime, iconGinger, iconBlueberry,
+  iconLime, iconGinger, iconBlueberry,
   iconOrange, iconOrange,
 ];
 

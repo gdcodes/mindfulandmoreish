@@ -109,10 +109,10 @@ const IndexPage: React.FC<IndexPageProps> = ({ data }) => {
           onChange={e => setSearchTerm(e.target.value)}
         />
         <SortSelect onChange={e => setSortOrder(e.target.value as SortOption)} value={sortOrder}>
-          <option value="newest">Newest First</option>
-          <option value="oldest">Oldest First</option>
-          <option value="time">Quickest First</option>
-          <option value="shelf">Longlasting First</option>
+          <option value="newest">Newest</option>
+          <option value="oldest">Oldest</option>
+          <option value="time">Quickest</option>
+          <option value="shelf">Longlasting</option>
         </SortSelect>
       </SearchAndSortContainer>
       <RecipeGrid>
