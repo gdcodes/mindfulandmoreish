@@ -19,7 +19,8 @@ This project is a fully-featured, modern, and visually appealing blog ready for 
 *   [Emotion](https://emotion.sh/)
 *   [Netlify](https://www.netlify.com/)
 *   [Cursor](https://www.cursor.com/)
-*   [ChatGPT](https://chatgpt.com/) 
+*   [ChatGPT](https://chatgpt.com/)
+*   [Windsurf](https://www.windsurf.com/) 
 
 ---
 
