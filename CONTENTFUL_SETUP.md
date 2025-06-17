@@ -20,7 +20,7 @@ Add the following fields to your `Recipe` content model. It is important to matc
 | **Prep Time**  | `prepTime`      | Integer    | ✅ Yes    | Preparation time in minutes.                                                                                |
 | **Cook Time**  | `cookTime`      | Integer    | ✅ Yes    | Cooking time in minutes.                                                                                    |
 | **Cool Time**  | `coolTime`      | Integer    | ◽️ No     | Cooling time in minutes.                                                                                    |
-| **Tags**       | `tags`          | Array      | ✅ Yes    | Set **Item type** to `Symbol`. Allows for filtering (e.g., "Vegan", "Dessert").                             |
+| **Tags**       | `tags`          | Array      | ✅ Yes    | Set **Item type** to `Symbol`. Allows for filtering (e.g., "vegan", "gluten-free").                             |
 | **Thumbnail**  | `thumbnail`     | Media      | ◽️ No     | Link to one **Asset**. Set validation to accept only images.                                                |
 | **Photos**     | `photos`        | Array      | ◽️ No     | Link to multiple **Assets**. Set validation to accept only images and a max of 5 files.                     |
 | **Ingredients**| `ingredients`   | Rich Text  | ✅ Yes    | Recipe ingredients. Standard rich text validations apply.                                                   |

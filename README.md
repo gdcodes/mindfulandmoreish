@@ -16,7 +16,7 @@ This project is a fully-featured, modern, and visually appealing blog ready for 
 *   [React](https://reactjs.org/)
 *   [TypeScript](https://www.typescriptlang.org/)
 *   [Contentful](https://www.contentful.com/)
-*   [Styled Components](https://styled-components.com/)
+*   [Emotion](https://emotion.sh/)
 *   [Netlify](https://www.netlify.com/)
 *   [Cursor](https://www.cursor.com/)
 *   [ChatGPT](https://chatgpt.com/) 
@@ -26,7 +26,7 @@ This project is a fully-featured, modern, and visually appealing blog ready for 
 ## ✨ Features
 
 - **CMS-Powered by Contentful**: Easily manage your recipes through a powerful and user-friendly CMS.
-- **Modern Tech Stack**: Built with Gatsby, TypeScript, and styled-components for a fast, type-safe, and beautifully styled experience.
+- **Modern Tech Stack**: Built with Gatsby, TypeScript, and Emotion for a fast, type-safe, and beautifully styled experience.
 - **Interactive & Engaging**:
   - Scrapbook-style photo galleries for each recipe.
   - Search and sort functionality on the homepage.

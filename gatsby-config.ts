@@ -10,10 +10,19 @@ const config: GatsbyConfig = {
   },
   plugins: [
     `gatsby-plugin-typescript`,
-    `gatsby-plugin-styled-components`,
+    {
+      resolve: `gatsby-plugin-emotion`,
+      options: {
+        sourceMap: true,
+        autoLabel: 'dev-only',
+        labelFormat: `[local]`,
+        cssPropOptimization: true,
+      },
+    },
     `gatsby-plugin-image`,
     `gatsby-plugin-sharp`,
     `gatsby-transformer-sharp`,
+    `gatsby-plugin-react-helmet`,
     {
       resolve: `gatsby-plugin-manifest`,
       options: {

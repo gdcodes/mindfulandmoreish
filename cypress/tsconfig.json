@@ -1,7 +1,15 @@
 {
-    "compilerOptions": {
-      "types": ["cypress", "node"]
-    },
-    "exclude": ["node_modules", "dist"],
-    "include": ["**/*.ts", "**/*.tsx"]
-  } 
+  "extends": "../tsconfig.json",
+  "compilerOptions": {
+    "target": "es5",
+    "lib": ["es5", "dom"],
+    "types": ["cypress", "node"],
+    "strict": true,
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true,
+    "moduleResolution": "node"
+  },
+  "include": ["**/*.ts", "**/*.tsx"],
+  "exclude": ["node_modules", "public", ".cache", "../node_modules", "../public", "../.cache"]
+}

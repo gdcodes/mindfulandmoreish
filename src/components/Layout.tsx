@@ -1,11 +1,9 @@
 import React, { useState, ReactNode } from 'react';
-import styled, { ThemeProvider, keyframes } from 'styled-components';
+import { keyframes } from '@emotion/react';
+import styled from '@emotion/styled';
 import { Link } from 'gatsby';
-import {
-  FaInstagram, FaRegEnvelope, FaBars, FaTimes,
-} from 'react-icons/fa';
-import { GlobalStyle } from '../theme/globalStyle';
-import { colors } from '../theme/colors';
+import { FaInstagram, FaRegEnvelope, FaBars, FaTimes } from 'react-icons/fa';
+import { ThemeProvider } from '../theme/ThemeProvider';
 import { Seo } from './Seo';
 import logo from '../images/logo.png';
 import iconLime from '../images/icon-lime.png';
@@ -15,9 +13,7 @@ import iconOrange from '../images/icon-orange.png';
 import '@fontsource/pacifico';
 import '@fontsource/merriweather';
 
-const theme = {
-  colors,
-};
+// Theme types are imported from theme.d.ts
 
 const SiteWrapper = styled.div`
   display: flex;
@@ -32,15 +28,15 @@ const Header = styled.header`
   display: flex;
   align-items: center;
   justify-content: space-between;
-  box-shadow: 0 4px 12px ${({ theme }) => theme.colors.shadow};
+  box-shadow: ${({ theme }) => `0 4px 12px ${theme.colors.shadow}`};
   position: sticky;
   top: 0;
   z-index: 1000;
-
+  
   @media (max-width: 820px) {
     padding: 0.75rem 1.5rem;
   }
-
+  
   @media (max-width: 375px) {
     padding: 0.5rem 1rem;
   }
@@ -51,11 +47,11 @@ const LogoContainer = styled(Link)`
   align-items: center;
   text-decoration: none;
   gap: 1rem;
-
+  
   @media (max-width: 820px) {
     gap: 0.75rem;
   }
-
+  
   @media (max-width: 375px) {
     gap: 0.5rem;
   }
@@ -66,14 +62,14 @@ const LogoImg = styled.img`
   height: 70px;
   border-radius: 50%;
   margin-right: 1.5rem;
-  box-shadow: 0 2px 8px ${({ theme }) => theme.colors.shadow};
-
+  box-shadow: ${({ theme }) => `0 2px 8px ${theme.colors.shadow}`};
+  
   @media (max-width: 820px) {
     width: 50px;
     height: 50px;
     margin-right: 0;
   }
-
+  
   @media (max-width: 375px) {
     width: 40px;
     height: 40px;
@@ -91,12 +87,12 @@ const HandwritingTitle = styled.h1`
   margin: 0;
   letter-spacing: 1.5px;
   font-weight: normal;
-
+  
   @media (max-width: 820px) {
     font-size: 1.8rem;
     letter-spacing: 1px;
   }
-
+  
   @media (max-width: 375px) {
     font-size: 1.4rem;
     letter-spacing: 0.5px;
@@ -104,16 +100,17 @@ const HandwritingTitle = styled.h1`
 `;
 
 const Tagline = styled.p`
-  color: ${({ theme }) => theme.colors.leaf};
-  font-size: 1.1rem;
-  margin: 0.2rem 0 0 0;
-  font-style: italic;
+  color: ${({ theme }) => theme.colors.secondary};
+  font-size: 1rem;
+  margin: 0.25rem 0 0 0;
   font-family: 'Merriweather', serif;
-
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  
   @media (max-width: 820px) {
     font-size: 0.9rem;
   }
-
+  
   @media (max-width: 375px) {
     font-size: 0.8rem;
   }
@@ -127,37 +124,33 @@ const Nav = styled.nav`
   }
 `;
 
-const NavLink = styled(Link)`
-  color: ${({ theme }) => theme.colors.textPrimary};
-  text-decoration: none;
-  font-size: 1.1rem;
-  font-weight: 700;
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  position: relative;
-  transition: color 0.3s ease;
+interface NavLinkProps {
+  $isActive?: boolean;
+}
 
+const NavLink = styled(Link)<NavLinkProps>`
+  color: ${({ theme, $isActive }) => $isActive ? theme.colors.primary : theme.colors.text};
+  text-decoration: none;
+  font-weight: 500;
+  font-size: 1.1rem;
+  transition: color 0.2s ease;
+  position: relative;
+  padding: 0.5rem 0;
   &::after {
     content: '';
     position: absolute;
-    width: 100%;
-    height: 2px;
-    bottom: -4px;
+    bottom: 0;
     left: 0;
+    width: 0;
+    height: 2px;
     background-color: ${({ theme }) => theme.colors.primary};
-    transform: scaleX(0);
-    transform-origin: bottom right;
-    transition: transform 0.3s ease;
+    transition: width 0.3s ease;
   }
-
+  &:hover::after {
+    width: 100%;
+  }
   &:hover {
     color: ${({ theme }) => theme.colors.primary};
-  }
-
-  &:hover::after {
-    transform: scaleX(1);
-    transform-origin: bottom left;
   }
 `;
 
@@ -165,34 +158,29 @@ const MenuButton = styled.button`
   display: none;
   background: none;
   border: none;
-  color: ${({ theme }) => theme.colors.textPrimary};
+  color: ${({ theme }) => theme.colors.text};
   font-size: 1.8rem;
   cursor: pointer;
   padding: 0.5rem;
   transition: color 0.3s ease;
   width: 40px;
   height: 40px;
-
   &:hover {
     color: ${({ theme }) => theme.colors.primary};
   }
-
   @media (max-width: 820px) {
     display: flex;
     align-items: center;
     justify-content: center;
   }
-
-  svg {
+  & svg {
     width: 24px;
     height: 24px;
   }
-
   @media (max-width: 375px) {
     width: 36px;
     height: 36px;
-    
-    svg {
+    & svg {
       width: 20px;
       height: 20px;
     }
@@ -214,65 +202,57 @@ const CloseButton = styled(MenuButton)`
   color: ${({ theme }) => theme.colors.leaf};
   border: none;
   background: transparent;
-
   span {
     font-family: 'Merriweather', serif;
     font-weight: normal;
     font-style: italic;
   }
-
   svg {
     width: 20px;
     height: 20px;
   }
-
   @media (max-width: 375px) {
     font-size: 0.9rem;
     margin-top: 1.5rem;
   }
 `;
 
-const MobileNav = styled.nav<{ $isOpen: boolean }>`
+const MobileNav = styled.div<{ isOpen: boolean }>`
   display: none;
-  
   @media (max-width: 820px) {
     display: flex;
     flex-direction: column;
-    justify-content: flex-start;
-    align-items: center;
-    gap: 1.5rem;
-    background: ${({ theme }) => theme.colors.background};
     position: fixed;
     top: 0;
-    left: 0;
-    width: 100%;
+    right: 0;
+    width: 80%;
+    max-width: 320px;
     height: 100vh;
+    padding: 2rem;
+    background: ${({ theme }) => theme.colors.background};
+    box-shadow: -5px 0 15px rgba(0, 0, 0, 0.1);
+    z-index: 1001;
+    transform: ${({ isOpen }) => isOpen ? 'translateX(0)' : 'translateX(100%)'};
     transition: transform 0.3s ease-in-out;
-    transform: ${({ $isOpen }) => ($isOpen ? 'translateX(0)' : 'translateX(100%)')};
-    z-index: 2000;
-    padding: 4rem 2rem;
     overflow-y: auto;
-    visibility: ${({ $isOpen }) => ($isOpen ? 'visible' : 'hidden')};
-  }
-
-  a {
-    font-size: 1.5rem;
-    font-weight: bold;
-    color: ${({ theme }) => theme.colors.textPrimary};
-    text-align: center;
-    width: 100%;
-    padding: 1rem;
-    transition: color 0.3s ease, background-color 0.3s ease;
-    border-radius: 8px;
-
-    &:hover {
-      color: ${({ theme }) => theme.colors.primary};
-      background-color: rgba(0, 0, 0, 0.05);
-    }
-
-    @media (max-width: 375px) {
-      font-size: 1.3rem;
-      padding: 0.75rem;
+    & a {
+      font-size: 1.5rem;
+      font-weight: bold;
+      color: ${({ theme }) => theme.colors.textPrimary};
+      text-align: center;
+      width: 100%;
+      padding: 1rem;
+      transition: color 0.3s ease, background-color 0.3s ease;
+      border-radius: 8px;
+      text-decoration: none;
+      &:hover {
+        color: ${({ theme }) => theme.colors.primary};
+        background-color: rgba(0, 0, 0, 0.05);
+      }
+      @media (max-width: 375px) {
+        font-size: 1.3rem;
+        padding: 0.75rem;
+      }
     }
   }
 `;
@@ -304,15 +284,12 @@ const FooterGrid = styled.div`
   position: relative;
   z-index: 2;
   align-items: start;
-
   @media (max-width: 768px) {
     grid-template-columns: repeat(2, 1fr);
   }
-
   @media (max-width: 480px) {
     grid-template-columns: 1fr;
     text-align: center;
-
     & > div {
       align-items: center;
     }
@@ -339,12 +316,10 @@ const FooterNavList = styled.ul`
   display: flex;
   flex-direction: column;
   gap: 1rem;
-
   li a {
     color: ${({ theme }) => theme.colors.textPrimary};
     text-decoration: none;
     transition: color 0.2s;
-
     &:hover {
       color: ${({ theme }) => theme.colors.primary};
     }
@@ -354,7 +329,6 @@ const FooterNavList = styled.ul`
 const SocialLinks = styled.div`
   display: flex;
   gap: 1.5rem;
-  
   a {
     font-size: 1.5rem;
   }
@@ -365,13 +339,11 @@ const Copyright = styled.p`
   font-size: 0.8rem;
   opacity: 0.7;
   line-height: 1.5;
-
   a {
     color: inherit;
     text-decoration: none;
     font-weight: bold;
     transition: color 0.2s ease-in-out;
-
     &:hover {
       color: ${({ theme }) => theme.colors.primary};
     }
@@ -405,85 +377,112 @@ const float5 = keyframes`
   100% { transform: translateY(0px) rotate(0deg); }
 `;
 
-const AnimatedIcon = styled.img`
+const AnimatedIcon = styled('img')`
   position: absolute;
   opacity: 0.35;
   z-index: 1;
   pointer-events: none;
-
-  &:nth-of-type(1) { /* Lime */
-    top: 15%; left: 5%; width: 70px; height: 70px;
+  &:nth-of-type(1) {
+    top: 15%;
+    left: 5%;
+    width: 70px;
+    height: 70px;
     animation: ${float1} 16s ease-in-out infinite;
     animation-delay: -2s;
   }
-  &:nth-of-type(2) { /* Ginger */
-    bottom: 20%; left: 12%; width: 70px; height: 70px;
+  &:nth-of-type(2) {
+    bottom: 20%;
+    left: 12%;
+    width: 70px;
+    height: 70px;
     animation: ${float2} 18s ease-in-out infinite;
     animation-delay: -5s;
   }
-  &:nth-of-type(3) { /* Berry */
-    top: 10%; left: 25%; width: 50px; height: 50px;
+  &:nth-of-type(3) {
+    top: 10%;
+    left: 25%;
+    width: 50px;
+    height: 50px;
     animation: ${float3} 13s ease-in-out infinite;
     animation-delay: -8s;
   }
-  &:nth-of-type(4) { /* Lime */
-    bottom: 15%; left: 35%; width: 70px; height: 70px;
+  &:nth-of-type(4) {
+    bottom: 15%;
+    left: 35%;
+    width: 70px;
+    height: 70px;
     animation: ${float4} 20s ease-in-out infinite;
     animation-delay: -1s;
   }
-  &:nth-of-type(5) { /* Ginger */
-    top: 20%; left: 48%; width: 70px; height: 70px;
+  &:nth-of-type(5) {
+    top: 20%;
+    left: 48%;
+    width: 70px;
+    height: 70px;
     animation: ${float5} 17s ease-in-out infinite;
     animation-delay: -12s;
   }
-  &:nth-of-type(6) { /* Berry */
-    bottom: 10%; left: 55%; width: 50px; height: 50px;
+  &:nth-of-type(6) {
+    bottom: 10%;
+    left: 55%;
+    width: 50px;
+    height: 50px;
     animation: ${float1} 19s ease-in-out infinite;
     animation-delay: -3s;
   }
-  &:nth-of-type(7) { /* Lime */
-    top: 15%; right: 30%; width: 70px; height: 70px;
+  &:nth-of-type(7) {
+    top: 15%;
+    right: 30%;
+    width: 70px;
+    height: 70px;
     animation: ${float2} 14s ease-in-out infinite;
     animation-delay: -7s;
   }
-  &:nth-of-type(8) { /* Ginger */
-    bottom: 25%; right: 20%; width: 70px; height: 70px;
+  &:nth-of-type(8) {
+    bottom: 25%;
+    right: 20%;
+    width: 70px;
+    height: 70px;
     animation: ${float3} 18s ease-in-out infinite;
     animation-delay: -11s;
   }
-  &:nth-of-type(9) { /* Berry */
-    top: 5%; right: 10%; width: 50px; height: 50px;
+  &:nth-of-type(9) {
+    top: 5%;
+    right: 10%;
+    width: 50px;
+    height: 50px;
     animation: ${float4} 15s ease-in-out infinite;
     animation-delay: -6s;
   }
-  &:nth-of-type(10) { /* Orange */
-    bottom: 5%; left: 20%; width: 70px; height: 70px;
+  &:nth-of-type(10) {
+    bottom: 5%;
+    left: 20%;
+    width: 70px;
+    height: 70px;
     animation: ${float5} 21s ease-in-out infinite;
     animation-delay: -4s;
   }
-  &:nth-of-type(11) { /* Orange */
-    top: 10%; right: 45%; width: 70px; height: 70px;
+  &:nth-of-type(11) {
+    bottom: 15%;
+    right: 25%;
+    width: 70px;
+    height: 70px;
     animation: ${float1} 16s ease-in-out infinite;
     animation-delay: -9s;
   }
-  &:nth-of-type(12) { /* Orange */
-    bottom: 15%; right: 5%; width: 70px; height: 70px;
-    animation: ${float2} 19s ease-in-out infinite;
-    animation-delay: -14s;
-  }
 `;
 
-const FooterLink = styled.a`
+const FooterLink = styled(Link)`
   color: ${({ theme }) => theme.colors.textPrimary};
   text-decoration: none;
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  transition: color 0.2s, transform 0.2s ease-in-out;
-
+  font-size: 0.9rem;
+  transition: color 0.3s ease;
   &:hover {
     color: ${({ theme }) => theme.colors.primary};
-    transform: scale(1.1);
+    text-decoration: underline;
+  }
+  @media (max-width: 820px) {
+    font-size: 0.85rem;
   }
 `;
 
@@ -495,11 +494,12 @@ const animatedIcons = [
   iconLime, iconGinger, iconBerry,
   iconLime, iconGinger, iconBerry,
   iconLime, iconGinger, iconBerry,
-  iconOrange, iconOrange, iconOrange,
+  iconOrange, iconOrange,
 ];
 
+
 export const Layout = ({ children }: LayoutProps) => {
-  const [isNavOpen, setIsNavOpen] = useState(false);
+const [isNavOpen, setIsNavOpen] = useState(false);
 
   const toggleNav = () => {
     setIsNavOpen(!isNavOpen);
@@ -510,8 +510,7 @@ export const Layout = ({ children }: LayoutProps) => {
   };
 
   return (
-    <ThemeProvider theme={theme}>
-      <GlobalStyle />
+    <ThemeProvider>
       <Seo />
       <SiteWrapper>
         <Header>
@@ -534,7 +533,7 @@ export const Layout = ({ children }: LayoutProps) => {
             <FaBars />
           </MenuButton>
         </Header>
-        <MobileNav $isOpen={isNavOpen}>
+        <MobileNav isOpen={isNavOpen}>
           <NavLink to="/" onClick={closeNav}>Recipes</NavLink>
           <NavLink to="/about" onClick={closeNav}>About</NavLink>
           <CloseButton 

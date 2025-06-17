@@ -1,6 +1,6 @@
 import React from 'react';
 import { graphql, PageProps } from 'gatsby';
-import styled from 'styled-components';
+import styled from '@emotion/styled';
 import { documentToReactComponents, Options } from '@contentful/rich-text-react-renderer';
 import { BLOCKS, Block, Inline } from '@contentful/rich-text-types';
 import { Seo } from '../components/Seo';

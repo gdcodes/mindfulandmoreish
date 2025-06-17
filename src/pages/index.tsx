@@ -1,5 +1,5 @@
 import React, { useState, useMemo } from 'react';
-import styled from 'styled-components';
+import styled from '@emotion/styled';
 import { graphql, PageProps } from 'gatsby';
 import { IGatsbyImageData } from 'gatsby-plugin-image';
 import { RecipeCard } from '../components/RecipeCard';
@@ -117,7 +117,21 @@ const IndexPage: React.FC<IndexPageProps> = ({ data }) => {
       </SearchAndSortContainer>
       <RecipeGrid>
         {filteredAndSortedRecipes.map(recipe => (
-          <RecipeCard key={recipe.id} recipe={recipe} />
+          <RecipeCard key={recipe.id} recipe={{
+            id: recipe.id,
+            title: recipe.title,
+            slug: recipe.slug,
+            prepTime: recipe.prepTime,
+            cookTime: recipe.cookTime,
+            coolTime: recipe.coolTime,
+            shelfLife: recipe.shelfLife,
+            fridgeLife: recipe.fridgeLife,
+            freezerLife: recipe.freezerLife,
+            tags: recipe.tags,
+            createdAt: recipe.createdAt,
+            ingredients: recipe.ingredients, 
+            instructions: recipe.instructions, 
+            thumbnail: recipe.thumbnail}} />
         ))}
       </RecipeGrid>
     </>

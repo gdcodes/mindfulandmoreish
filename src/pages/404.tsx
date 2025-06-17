@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'gatsby';
-import styled from 'styled-components';
+import styled from '@emotion/styled';
 import { Seo } from '../components/Seo';
 
 const Container = styled.div`
@@ -21,7 +21,7 @@ const Title = styled.h1`
 
 const Subtitle = styled.p`
   font-size: 1.5rem;
-  color: ${({ theme }) => theme.colors.textLight};
+  color: ${({ theme }) => theme.colors.gray.dark};
   margin-bottom: 2rem;
 `;
 
@@ -35,7 +35,7 @@ const HomeLink = styled(Link)`
   transition: background-color 0.2s;
 
   &:hover {
-    background-color: ${({ theme }) => theme.colors.accent};
+    background-color: ${({ theme }) => theme.colors.cta};
     color: ${({ theme }) => theme.colors.white};
   }
 `;

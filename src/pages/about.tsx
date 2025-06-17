@@ -1,7 +1,7 @@
 import React from 'react';
-import styled from 'styled-components';
+import styled from '@emotion/styled';
 import { Seo } from '../components/Seo';
-import logo from '../images/logo.png'; // Assuming you want to use the logo here as well
+import logo from '../images/logo.png';
 
 const AboutContainer = styled.div`
   max-width: 800px;

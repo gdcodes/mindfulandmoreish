@@ -14,7 +14,20 @@ module.exports = {
     },
     testEnvironment: 'jsdom',
     setupFilesAfterEnv: ['<rootDir>/setup-test-env.js'],
-    reporters: ['default', 'jest-junit'],
+    reporters: [
+      'default',
+      ['jest-junit', {
+        outputDirectory: 'coverage/junit',
+        outputName: 'jest-junit.xml',
+        includeConsoleOutput: true,
+        output: 'coverage/junit/jest-junit.xml',
+        suiteName: 'Jest Tests',
+        classNameTemplate: '{classname} - {title}',
+        titleTemplate: '{classname} - {title}',
+        ancestorSeparator: ' > ',
+        usePathForSuiteName: 'true'
+      }]
+    ],
     collectCoverageFrom: [
       'src/**/*.{ts,tsx}',
       '!src/**/*.d.ts',
