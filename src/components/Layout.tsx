@@ -1,4 +1,4 @@
-import clarity from '@microsoft/clarity';
+import Clarity from '@microsoft/clarity';
 import React, { useState, ReactNode, useEffect } from 'react';
 import { keyframes } from '@emotion/react';
 import styled from '@emotion/styled';
@@ -544,8 +544,8 @@ export const Layout = ({ children }: LayoutProps) => {
   const [isNavOpen, setIsNavOpen] = useState(false);
 
     useEffect(() => {
-    if (window.location.hostname !== 'localhost' && process.env.CLARITY_PROJECT_ID) {
-      clarity.init(process.env.CLARITY_PROJECT_ID);
+    if (window?.location?.hostname !== 'localhost' && process.env.CLARITY_PROJECT_ID) {
+      Clarity.init(process.env.CLARITY_PROJECT_ID);
     }
   }, []);
 
