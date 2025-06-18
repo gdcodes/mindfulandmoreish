@@ -17,7 +17,7 @@ export const ThemeProvider: React.FC<ThemeProviderProps> = ({ children }) => {
   // Initialize Clarity analytics in production
   useEffect(() => {
     if (typeof window !== 'undefined' && 
-        window.location.hostname !== 'localhost' && 
+        window.location?.hostname !== 'localhost' && 
         process.env.CLARITY_PROJECT_ID) {
       Clarity.init(process.env.CLARITY_PROJECT_ID);
     }
