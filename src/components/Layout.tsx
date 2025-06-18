@@ -1,4 +1,5 @@
-import React, { useState, ReactNode } from 'react';
+import clarity from '@microsoft/clarity';
+import React, { useState, ReactNode, useEffect } from 'react';
 import { keyframes } from '@emotion/react';
 import styled from '@emotion/styled';
 import { Link } from 'gatsby';
@@ -386,6 +387,21 @@ const Copyright = styled.p`
   }
 `;
 
+const AnalyticsNotice = styled.p`
+  font-size: 0.8rem;
+  opacity: 0.7;
+  margin-bottom: 1.5rem;
+  line-height: 1.5;
+  a {
+    color: inherit;
+    text-decoration: underline;
+    transition: color 0.2s ease-in-out;
+    &:hover {
+      color: ${({ theme }) => theme.colors.primary};
+    }
+  }
+`;
+
 // --- FINALIZED FOOTER & ANIMATIONS ---
 const float1 = keyframes`
   0% { transform: translateY(0px) rotate(0deg); }
@@ -525,7 +541,13 @@ const animatedIcons = [
 
 
 export const Layout = ({ children }: LayoutProps) => {
-const [isNavOpen, setIsNavOpen] = useState(false);
+  const [isNavOpen, setIsNavOpen] = useState(false);
+
+    useEffect(() => {
+    if (window.location.hostname !== 'localhost' && process.env.CLARITY_PROJECT_ID) {
+      clarity.init(process.env.CLARITY_PROJECT_ID);
+    }
+  }, []);
 
   const toggleNav = () => {
     setIsNavOpen(!isNavOpen);
@@ -577,6 +599,9 @@ const [isNavOpen, setIsNavOpen] = useState(false);
           <FooterGrid>
             <FooterColumn>
               <Copyright>© {new Date().getFullYear()} <Link to="/">Mindful and Moreish</Link>.<br/>All Rights Reserved.</Copyright>
+              <AnalyticsNotice>
+                This site uses Microsoft Clarity to collect analytics data and help improve user experience. Learn more in our <Link to="/privacy">Privacy Policy</Link>.
+              </AnalyticsNotice>
             </FooterColumn>
             <FooterColumn>
               <FooterColumnTitle>Explore</FooterColumnTitle>

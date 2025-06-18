@@ -66,10 +66,18 @@ const PrivacyPage = () => {
         <Section>
           <SectionTitle>Introduction</SectionTitle>
           <Text>
-            Welcome to Mindful and Moreish. We are committed to protecting your privacy. This Privacy Policy explains how we collect, use, disclose, and safeguard your information when you visit our website. Please read this privacy policy carefully. If you do not agree with the terms of this privacy policy, please do not access the site.
+            This Privacy Policy ("policy") constitutes a legally binding agreement between you ("you," "user") and Mindful and Moreish ("we," "us," or "our") regarding the collection, use, and protection of your personal data when you access or use the mindfulandmoreish.com website ("the site").
           </Text>
           <Text>
-            We reserve the right to make changes to this Privacy Policy at any time and for any reason. We will alert you about any changes by updating the "Last updated" date of this Privacy Policy.
+            By accessing or using the site, you acknowledge that you have read, understood, and agree to the terms of this policy. If you do not agree with any part of this Privacy Policy, please do not use the site.
+          </Text>
+          <Text>
+            We are committed to protecting your privacy and handling your personal data with transparency and care. This Privacy Policy explains how we collect, use, disclose, and safeguard your information when you visit or interact with the site.
+          </Text>
+          <Text>
+            We reserve the right to modify this Privacy Policy at any time and for any reason. Changes will be effective immediately upon posting 
+            to the site. Your continued use of the site after any changes indicates your acceptance of the 
+            updated policy. 
           </Text>
         </Section>
         
@@ -79,25 +87,32 @@ const PrivacyPage = () => {
             We are committed to your privacy. We do not collect any personally identifiable information from you, such as your name or email address. 
           </Text>
           <Text>
-            However, our servers may automatically collect non-personal "Derivative Data" when you access the Site. This includes information like your IP address, browser type, operating system, and the pages you view on our site. This data is used solely for the purpose of analysing website traffic and improving user experience.
+            However, our servers may automatically collect non-personal "Derivative Data" when you access the site. This includes information like your IP address, browser type, operating system, and the pages you view on our site. This data is used solely for the purpose of analysing website traffic and improving user experience.
           </Text>
         </Section>
 
         <Section>
           <SectionTitle>Use of Your Information</SectionTitle>
           <Text>
-            Having accurate information about you permits us to provide you with a smooth, efficient, and customised experience. Specifically, we may use information collected about you via the Site to:
+            Having accurate information about you permits us to provide you with a smooth, efficient, and customised experience. Specifically, we may use information collected about you via the site to:
           </Text>
           <List>
-            <li>Analyse usage and trends to improve your experience with the Site.</li>
-            <li>Protect our website from abuse and spam.</li>
+            <li>Analyse usage and trends to improve your experience with the site.</li>
+            <li>Protect the site from abuse and spam.</li>
           </List>
+        </Section>
+
+        <Section>
+          <SectionTitle>Analytics & Tracking Technologies</SectionTitle>
+          <Text>
+            We use Microsoft Clarity to collect data on how you interact with our site through heatmaps, session replays, and behavioural metrics. This helps us improve our site, enhance security, and better understand user activity. Data is collected via cookies and similar technologies. By using our site, you agree that we and Microsoft may collect and use this data to see how you use our site. For details, see the <a style={{ wordBreak: 'break-all' }} href="https://privacy.microsoft.com/en-gb/privacystatement" target="_blank" rel="noopener noreferrer">Microsoft Privacy Statement</a>.
+          </Text>
         </Section>
 
         <Section>
           <SectionTitle>Third-Party Websites</SectionTitle>
           <Text>
-            The Site may contain links to third-party websites and applications of interest, including advertisements and external services, that are not affiliated with us. Once you have used these links to leave the Site, any information you provide to these third parties is not covered by this Privacy Policy, and we cannot guarantee the safety and privacy of your information.
+            The site may contain links to third-party websites and applications of interest, including advertisements and external services, that are not affiliated with us. Once you have used these links to leave the site, any information you provide to these third parties is not covered by this Privacy Policy, and we cannot guarantee the safety and privacy of your information.
           </Text>
         </Section>
         
