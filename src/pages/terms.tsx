@@ -62,7 +62,7 @@ const TermsPage = () => {
       />
       <Container>
         <Title data-test-id="terms-title">Terms and Disclaimer</Title>
-        <LastUpdated>Last updated: 15 June 2025</LastUpdated>
+        <LastUpdated>Last updated: 18 June 2025</LastUpdated>
         
         
       <Section>
@@ -111,15 +111,13 @@ const TermsPage = () => {
         </Section>
 
         <Section>
-          <SectionTitle>Content Usage</SectionTitle>
+          <SectionTitle>Copyright and Licensing</SectionTitle>
           <Text>
-            All content on this website, including but not limited to text, graphics, logos, images, recipes, and 
-            cooking instructions, is the intellectual property of Mindful and Moreish and is protected by copyright laws. 
-            Content may not be reproduced, distributed, or transmitted in any form without prior written permission from us.
+            The website's code is licensed under the GNU GPL v3.0 and may be used, modified, and shared in accordance with its terms.
+            All non-code content—including logos, images, text, recipes, and cooking instructions—is the intellectual property of Mindful and Moreish and may not be reproduced or distributed without prior written permission.
           </Text>
           <Text>
-            Recipes are intended for personal use only and may not be used for commercial purposes without explicit written 
-            consent.
+            Recipes are provided for personal use only and may not be used for commercial purposes without explicit written consent.
           </Text>
         </Section>
 
@@ -138,7 +136,7 @@ const TermsPage = () => {
           <SectionTitle>Contact Us</SectionTitle>
           <Text>
             If you have any questions about these terms or the practices of this site, please contact us at:{' '}
-            <a href="mailto:info@mindfulandmoreish.com">info@mindfulandmoreish.com</a>
+            <a href="mailto:info@mindfulandmoreish.com" style={{ wordBreak: 'break-all' }}>info@mindfulandmoreish.com</a>
           </Text>
         </Section>
       </Container>
