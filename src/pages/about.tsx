@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from '@emotion/styled';
 import { Seo } from '../components/Seo';
-import logo from '../images/logo.png';
+import logo from '../images/logo-no-background.png';
 
 const AboutContainer = styled.div`
   max-width: 800px;
@@ -18,12 +18,17 @@ const PageTitle = styled.h1`
 `;
 
 const ProfileImage = styled.img`
-  width: 200px;
-  height: 200px;
+  display: block;
+  width: 180px;
+  height: 180px;
   border-radius: 50%;
   margin: 0 auto 2rem auto;
   box-shadow: 0 8px 25px ${({ theme }) => theme.colors.shadow};
   border: 4px solid ${({ theme }) => theme.colors.primary};
+  object-fit: contain;
+  object-position: center;
+  background-color: white;
+  padding: 20px;
 `;
 
 const Section = styled.section`

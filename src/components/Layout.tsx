@@ -5,11 +5,13 @@ import { Link } from 'gatsby';
 import { FaInstagram, FaRegEnvelope, FaBars, FaTimes } from 'react-icons/fa';
 import { ThemeProvider } from '../theme/ThemeProvider';
 import { Seo } from './Seo';
-import logo from '../images/logo.png';
+import logo from '../images/logo-no-background.png';
 import iconLime from '../images/icon-lime.png';
 import iconGinger from '../images/icon-ginger.png';
 import iconBlueberry from '../images/icon-blueberry.png';
 import iconOrange from '../images/icon-orange.png';
+import iconAlmond from '../images/icon-almond.png';
+import iconRaspberry from '../images/icon-raspberry.png';
 import '@fontsource/pacifico';
 import '@fontsource/merriweather';
 
@@ -35,49 +37,65 @@ const Header = styled.header`
   
   @media (max-width: 820px) {
     padding: 0.75rem 1.5rem;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
   }
   
   @media (max-width: 375px) {
-    padding: 0.5rem 1rem;
+    padding: 0.75rem 1rem;
   }
 `;
 
 const LogoContainer = styled(Link)`
   display: flex;
+  flex-direction: column;
   align-items: center;
   text-decoration: none;
-  gap: 1rem;
+  gap: 0.5rem;
+  text-align: center;
   
-  @media (max-width: 820px) {
-    gap: 0.75rem;
+  @media (min-width: 821px) {
+    flex-direction: row;
+    gap: 1.5rem;
+    text-align: left;
   }
   
-  @media (max-width: 375px) {
-    gap: 0.5rem;
+  @media (max-width: 820px) {
+    flex: 1;
+    justify-content: center;
   }
 `;
 
 const LogoImg = styled.img`
-  width: 70px;
-  height: 70px;
+  display: block;
+  width: 80px;
+  height: 80px;
   border-radius: 50%;
-  margin-right: 1.5rem;
   box-shadow: ${({ theme }) => `0 2px 8px ${theme.colors.shadow}`};
+  object-fit: contain;
+  object-position: center;
+  background-color: white;
+  padding: 12px;
+  margin: 0 auto;
   
   @media (max-width: 820px) {
-    width: 50px;
-    height: 50px;
-    margin-right: 0;
+    width: 60px;
+    height: 60px;
+    padding: 10px;
   }
   
   @media (max-width: 375px) {
-    width: 40px;
-    height: 40px;
+    width: 50px;
+    height: 50px;
   }
 `;
 
 const TitleContainer = styled.div`
-  text-align: left;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 `;
 
 const HandwritingTitle = styled.h1`
@@ -100,7 +118,7 @@ const HandwritingTitle = styled.h1`
 `;
 
 const Tagline = styled.p`
-  color: ${({ theme }) => theme.colors.secondary};
+  color: ${({ theme }) => theme.colors.highlight};
   font-size: 1rem;
   margin: 0.25rem 0 0 0;
   font-family: 'Merriweather', serif;
@@ -154,14 +172,18 @@ const NavLink = styled(Link)<NavLinkProps>`
   }
 `;
 
-const MenuButton = styled.button`
-  display: none;
+const MobileMenuButton = styled.button`
   background: none;
   border: none;
-  color: ${({ theme }) => theme.colors.text};
-  font-size: 1.8rem;
+  font-size: 1.5rem;
   cursor: pointer;
-  padding: 0.5rem;
+  color: ${({ theme }) => theme.colors.text};
+  display: none;
+  
+  @media (max-width: 820px) {
+    display: block;
+    margin-left: auto;
+  }
   transition: color 0.3s ease;
   width: 40px;
   height: 40px;
@@ -187,7 +209,7 @@ const MenuButton = styled.button`
   }
 `;
 
-const CloseButton = styled(MenuButton)`
+const CloseButton = styled(MobileMenuButton)`
   position: relative;
   margin: 2rem auto 0;
   width: auto;
@@ -387,7 +409,21 @@ const float4 = keyframes`
 `;
 const float5 = keyframes`
   0% { transform: translateY(0px) rotate(0deg); }
-  50% { transform: translateY(-45px) rotate(10deg); }
+  33% { transform: translateY(-35px) rotate(15deg); }
+  66% { transform: translateY(10px) rotate(-10deg); }
+  100% { transform: translateY(0px) rotate(0deg); }
+`;
+
+const float6 = keyframes`
+  0% { transform: translateY(0px) rotate(0deg); }
+  33% { transform: translateY(-40px) rotate(-20deg); }
+  66% { transform: translateY(15px) rotate(15deg); }
+  100% { transform: translateY(0px) rotate(0deg); }
+`;
+
+const float7 = keyframes`
+  0% { transform: translateY(0px) rotate(0deg); }
+  50% { transform: translateY(-50px) rotate(25deg); }
   100% { transform: translateY(0px) rotate(0deg); }
 `;
 
@@ -396,94 +432,68 @@ const AnimatedIcon = styled('img')`
   opacity: 0.35;
   z-index: 1;
   pointer-events: none;
-  &:nth-of-type(1) {
-    top: 15%;
-    left: 5%;
-    width: 70px;
-    height: 70px;
-    animation: ${float1} 16s ease-in-out infinite;
-    animation-delay: -2s;
-  }
-  &:nth-of-type(2) {
-    bottom: 20%;
-    left: 12%;
-    width: 70px;
-    height: 70px;
-    animation: ${float2} 18s ease-in-out infinite;
-    animation-delay: -5s;
-  }
-  &:nth-of-type(3) {
-    top: 10%;
-    left: 25%;
-    width: 50px;
-    height: 50px;
-    animation: ${float3} 13s ease-in-out infinite;
-    animation-delay: -8s;
-  }
-  &:nth-of-type(4) {
-    bottom: 15%;
-    left: 35%;
-    width: 70px;
-    height: 70px;
-    animation: ${float4} 20s ease-in-out infinite;
-    animation-delay: -1s;
-  }
-  &:nth-of-type(5) {
-    top: 20%;
-    left: 48%;
-    width: 70px;
-    height: 70px;
-    animation: ${float5} 17s ease-in-out infinite;
-    animation-delay: -12s;
-  }
-  &:nth-of-type(6) {
-    bottom: 10%;
-    left: 55%;
-    width: 50px;
-    height: 50px;
-    animation: ${float1} 19s ease-in-out infinite;
-    animation-delay: -3s;
-  }
+  /* Lime Icons - Medium Size */
+  &:nth-of-type(1),
+  &:nth-of-type(4),
   &:nth-of-type(7) {
-    top: 15%;
-    right: 30%;
     width: 70px;
     height: 70px;
-    animation: ${float2} 14s ease-in-out infinite;
-    animation-delay: -7s;
   }
+  /* Ginger Icons - Medium Size */
+  &:nth-of-type(2),
+  &:nth-of-type(5),
   &:nth-of-type(8) {
-    bottom: 25%;
-    right: 20%;
     width: 70px;
     height: 70px;
-    animation: ${float3} 18s ease-in-out infinite;
-    animation-delay: -11s;
   }
+  /* Blueberry Icons - Small Size */
+  &:nth-of-type(3),
+  &:nth-of-type(6),
   &:nth-of-type(9) {
-    top: 5%;
-    right: 10%;
     width: 50px;
     height: 50px;
-    animation: ${float4} 15s ease-in-out infinite;
-    animation-delay: -6s;
   }
-  &:nth-of-type(10) {
-    bottom: 5%;
-    left: 20%;
+  /* Orange Icons - Large Size */
+  &:nth-of-type(10),
+  &:nth-of-type(11),
+  &:nth-of-type(12) {
+    width: 80px;
+    height: 80px;
+  }
+  /* Almond Icons - Medium Size */
+  &:nth-of-type(13),
+  &:nth-of-type(14),
+  &:nth-of-type(15) {
+    width: 50px;
+    height: 50px;
+  }
+  /* Raspberry Icons - Small Size */
+  &:nth-of-type(16),
+  &:nth-of-type(17),
+  &:nth-of-type(18) {
     width: 70px;
     height: 70px;
-    animation: ${float5} 21s ease-in-out infinite;
-    animation-delay: -4s;
   }
-  &:nth-of-type(11) {
-    bottom: 15%;
-    right: 25%;
-    width: 70px;
-    height: 70px;
-    animation: ${float1} 16s ease-in-out infinite;
-    animation-delay: -9s;
-  }
+  
+  /* Individual Icon Positions and Animations */
+  &:nth-of-type(1) { top: 15%; left: 5%; animation: ${float1} 16s ease-in-out infinite; animation-delay: -2s; }
+  &:nth-of-type(2) { bottom: 20%; left: 12%; animation: ${float2} 18s ease-in-out infinite; animation-delay: -5s; }
+  &:nth-of-type(3) { top: 10%; left: 25%; animation: ${float3} 13s ease-in-out infinite; animation-delay: -8s; }
+  &:nth-of-type(4) { bottom: 15%; left: 35%; animation: ${float4} 20s ease-in-out infinite; animation-delay: -1s; }
+  &:nth-of-type(5) { top: 20%; left: 48%; animation: ${float5} 17s ease-in-out infinite; animation-delay: -12s; }
+  &:nth-of-type(6) { bottom: 10%; left: 55%; animation: ${float1} 19s ease-in-out infinite; animation-delay: -3s; }
+  &:nth-of-type(7) { top: 15%; right: 30%; animation: ${float2} 14s ease-in-out infinite; animation-delay: -7s; }
+  &:nth-of-type(8) { bottom: 25%; right: 20%; animation: ${float3} 18s ease-in-out infinite; animation-delay: -11s; }
+  &:nth-of-type(9) { top: 5%; right: 10%; animation: ${float4} 15s ease-in-out infinite; animation-delay: -6s; }
+  &:nth-of-type(10) { bottom: 5%; left: 20%; animation: ${float5} 21s ease-in-out infinite; animation-delay: -4s; }
+  &:nth-of-type(11) { bottom: 15%; right: 25%; animation: ${float1} 16s ease-in-out infinite; animation-delay: -9s; }
+  &:nth-of-type(12) { top: 10%; right: 35%; animation: ${float5} 20s ease-in-out infinite; animation-delay: -7s; }
+  &:nth-of-type(13) { top: 30%; right: 40%; animation: ${float6} 19s ease-in-out infinite; animation-delay: -7s; opacity: 0.4; }
+  &:nth-of-type(14) { bottom: 30%; left: 45%; animation: ${float6} 22s ease-in-out infinite; animation-delay: -14s; opacity: 0.4; }
+  &:nth-of-type(15) { top: 25%; left: 15%; animation: ${float6} 21s ease-in-out infinite; animation-delay: -11s; opacity: 0.4; }
+  &:nth-of-type(16) { bottom: 20%; right: 15%; animation: ${float7} 18s ease-in-out infinite; animation-delay: -6s; opacity: 0.35; }
+  &:nth-of-type(17) { top: 15%; left: 20%; animation: ${float7} 20s ease-in-out infinite; animation-delay: -8s; opacity: 0.35; }
+  &:nth-of-type(18) { bottom: 10%; left: 30%; animation: ${float7} 22s ease-in-out infinite; animation-delay: -10s; opacity: 0.35; }
 `;
 
 const FooterLink = styled(Link)`
@@ -508,7 +518,9 @@ const animatedIcons = [
   iconLime, iconGinger, iconBlueberry,
   iconLime, iconGinger, iconBlueberry,
   iconLime, iconGinger, iconBlueberry,
-  iconOrange, iconOrange,
+  iconOrange, iconOrange, iconOrange,
+  iconAlmond, iconAlmond, iconAlmond,
+  iconRaspberry, iconRaspberry, iconRaspberry
 ];
 
 
@@ -539,19 +551,18 @@ const [isNavOpen, setIsNavOpen] = useState(false);
             <NavLink to="/">Recipes</NavLink>
             <NavLink to="/about">About</NavLink>
           </Nav>
-          <MenuButton 
-            onClick={toggleNav} 
-            aria-expanded={isNavOpen}
+          <MobileMenuButton 
+            onClick={() => setIsNavOpen(!isNavOpen)} 
             aria-label={isNavOpen ? "Close menu" : "Open menu"}
           >
-            <FaBars />
-          </MenuButton>
+            {isNavOpen ? <FaTimes /> : <FaBars />}
+          </MobileMenuButton>
         </Header>
         <MobileNav isOpen={isNavOpen}>
-          <NavLink to="/" onClick={closeNav}>Recipes</NavLink>
-          <NavLink to="/about" onClick={closeNav}>About</NavLink>
+          <NavLink to="/" onClick={() => setIsNavOpen(false)}>Recipes</NavLink>
+          <NavLink to="/about" onClick={() => setIsNavOpen(false)}>About</NavLink>
           <CloseButton 
-            onClick={closeNav}
+            onClick={() => setIsNavOpen(false)}
             aria-label="Close menu"
           >
             <FaTimes />
@@ -585,8 +596,8 @@ const [isNavOpen, setIsNavOpen] = useState(false);
             <FooterColumn>
               <FooterColumnTitle>Connect</FooterColumnTitle>
               <SocialLinks>
-                <FooterLink href="mailto:info@mindfulandmoreish.com"><FaRegEnvelope /></FooterLink>
-                <FooterLink href="https://instagram.com/mindfulandmoreish" target="_blank" rel="noopener noreferrer"><FaInstagram /></FooterLink>
+                <FooterLink to="mailto:info@mindfulandmoreish.com"><FaRegEnvelope /></FooterLink>
+                <FooterLink to="https://instagram.com/mindfulandmoreish" target="_blank" rel="noopener noreferrer"><FaInstagram /></FooterLink>
               </SocialLinks>
             </FooterColumn>
           </FooterGrid>
