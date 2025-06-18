@@ -4,7 +4,7 @@ import type { GatsbyConfig } from "gatsby";
 const config: GatsbyConfig = {
   siteMetadata: {
     title: `Mindful and Moreish`,
-    description: `Mindful Meals. Moreish Moments. Discover delicious and mindful recipes for a balanced lifestyle.`,
+    description: `Mindful Meals. Moreish Moments. Discover delicious and nourishing recipes for a balanced lifestyle.`,
     author: `@mindfulandmoreish`,
     siteUrl: `https://mindfulandmoreish.com`,
   },
