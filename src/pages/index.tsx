@@ -256,7 +256,10 @@ const IndexPage: React.FC<IndexPageProps> = ({ data }) => {
           <SortContainer>
             <SortSelect 
               id="sort-recipes"
-              onChange={e => setSortOrder(e.target.value as SortOption)} 
+              onChange={e => {
+                setSortOrder(e.target.value as SortOption); 
+                e.currentTarget.blur();
+              }} 
               value={sortOrder}
               aria-label="Sort recipes"
             >
