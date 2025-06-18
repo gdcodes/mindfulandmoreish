@@ -100,12 +100,13 @@ interface FilterButtonProps {
 const FilterButton = styled.button<FilterButtonProps>(({ theme, isActive }) => ({
   display: 'block',
   width: '100%',
-  padding: '0.75rem 1.25rem',
+  padding: '0.75rem 1.25rem 0.75rem 1rem',
   background: theme.colors.white,
   border: `2px solid ${isActive ? theme.colors.primary : theme.colors.gray.light}`,
   borderRadius: '8px',
   fontSize: '1rem',
-  color: isActive ? theme.colors.primary : theme.colors.text,
+  fontWeight: 500,
+  color: theme.colors.text,
   cursor: 'pointer',
   transition: 'all 0.2s ease',
   textAlign: 'left',
@@ -169,7 +170,7 @@ export const TagFilter: React.FC<TagFilterProps> = ({
     <div style={{ position: 'relative', width: '100%' }} ref={nodeRef}>
       <FilterButton
         ref={buttonRef}
-        isActive={isOpen || selectedTags.length > 0}
+        isActive={isOpen}
         onClick={() => setIsOpen(!isOpen)}
         data-testid="tag-filter-button"
         aria-label="Filter by tags"
