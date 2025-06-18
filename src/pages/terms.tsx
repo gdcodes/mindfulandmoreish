@@ -68,10 +68,10 @@ const TermsPage = () => {
       <Section>
         <SectionTitle>Agreement to Terms</SectionTitle>
         <Text>
-          These Terms of Use (“Terms”) constitute a legally binding agreement between you (“you,” “User”) and Mindful and Moreish (“we,” “us,” “our”) regarding your access to and use of the mindfulandmoreish.com website (the “Site”).
+          These Terms of Use ("terms") constitute a legally binding agreement between you ("you," "user") and Mindful and Moreish ("we," "us," "our") regarding your access to and use of the mindfulandmoreish.com website ("the site").
         </Text>
         <Text>
-          By accessing or using the Site, you acknowledge that you have read, understood, and agree to be bound by these Terms. If you do not agree to these Terms, you must not access or use the Site.
+          By accessing or using the site, you acknowledge that you have read, understood, and agree to be bound by these terms. If you do not agree to these terms, you must not access or use the site.
         </Text>
       </Section>
       <Section>
@@ -124,10 +124,10 @@ const TermsPage = () => {
         <Section>
           <SectionTitle>Changes to Terms</SectionTitle>
           <Text>
-            Any disputes arising from the use of this website shall be governed by and construed in accordance with the laws of England and Wales. By using this website, you agree that the courts of England and Wales shall have exclusive jurisdiction to resolve any disputes.
+            Any disputes arising from the use of the site shall be governed by and construed in accordance with the laws of England and Wales. By using the site, you agree that the courts of England and Wales shall have exclusive jurisdiction to resolve any disputes.
 
-            We reserve the right to modify these terms at any time. Changes will be effective immediately upon posting 
-            to the website. Your continued use of the website after any changes indicates your acceptance of the 
+            We reserve the right to modify these terms at any time and for any reason. Changes will be effective immediately upon posting 
+            to the site. Your continued use of the site after any changes indicates your acceptance of the 
             modified terms.
           </Text>
         </Section>
@@ -135,7 +135,7 @@ const TermsPage = () => {
         <Section>
           <SectionTitle>Contact Us</SectionTitle>
           <Text>
-            If you have any questions about these terms or the practices of this site, please contact us at:{' '}
+            If you have any questions about these terms or the practices of the site, please contact us at:{' '}
             <a href="mailto:info@mindfulandmoreish.com" style={{ wordBreak: 'break-all' }}>info@mindfulandmoreish.com</a>
           </Text>
         </Section>

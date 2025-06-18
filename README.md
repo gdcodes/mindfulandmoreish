@@ -33,6 +33,7 @@ This project is a fully-featured, modern, and visually appealing blog ready for 
   - Search, filter, and sort functionality on the homepage.
 - **Ready for Deployment**: Pre-configured for seamless deployment on Netlify.
 - **SEO Optimized**: SEO component included for better search engine visibility.
+- **User Analytics**: Integrated with Microsoft Clarity for understanding user behavior through heatmaps and session recordings.
 
 ---
 
@@ -65,6 +66,9 @@ Follow these steps to get your local development environment up and running.
       # Contentful API keys
       CONTENTFUL_SPACE_ID="<your_space_id>"
       CONTENTFUL_ACCESS_TOKEN="<your_access_token>"
+      
+      # Microsoft Clarity Analytics
+      CLARITY_PROJECT_ID="<your_clarity_project_id>"
       ```
     - You can get these keys by signing up for a free [Contentful account](https://www.contentful.com/), creating a new **Space**, and navigating to **Settings > API keys**.
 4.  **Set up the Contentful model**
