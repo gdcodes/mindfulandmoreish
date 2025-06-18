@@ -30,7 +30,7 @@ This project is a fully-featured, modern, and visually appealing blog ready for 
 - **Modern Tech Stack**: Built with Gatsby, TypeScript, and Emotion for a fast, type-safe, and beautifully styled experience.
 - **Interactive & Engaging**:
   - Scrapbook-style photo galleries for each recipe.
-  - Search, filter and sort functionality on the homepage.
+  - Search, filter, and sort functionality on the homepage.
 - **Ready for Deployment**: Pre-configured for seamless deployment on Netlify.
 - **SEO Optimized**: SEO component included for better search engine visibility.
 

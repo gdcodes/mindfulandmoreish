@@ -61,7 +61,7 @@ const PrivacyPage = () => {
       />
       <Container>
         <Title>Privacy Policy</Title>
-        <LastUpdated>Last updated: 15 June 2025</LastUpdated>
+        <LastUpdated>Last updated: 18 June 2025</LastUpdated>
 
         <Section>
           <SectionTitle>Introduction</SectionTitle>
@@ -105,7 +105,7 @@ const PrivacyPage = () => {
           <SectionTitle>Contact Us</SectionTitle>
           <Text>
             If you have questions or comments about this Privacy Policy, please contact us at:{' '}
-            <a href="mailto:info@mindfulandmoreish.com">info@mindfulandmoreish.com</a>
+            <a href="mailto:info@mindfulandmoreish.com" style={{ wordBreak: 'break-all' }}>info@mindfulandmoreish.com</a>
           </Text>
         </Section>
       </Container>

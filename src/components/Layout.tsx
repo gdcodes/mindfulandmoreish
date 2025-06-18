@@ -2,7 +2,7 @@ import React, { useState, ReactNode } from 'react';
 import { keyframes } from '@emotion/react';
 import styled from '@emotion/styled';
 import { Link } from 'gatsby';
-import { FaInstagram, FaRegEnvelope, FaBars, FaTimes } from 'react-icons/fa';
+import { FaGithub, FaInstagram, FaRegEnvelope, FaBars, FaTimes } from 'react-icons/fa';
 import { ThemeProvider } from '../theme/ThemeProvider';
 import { Seo } from './Seo';
 import logo from '../images/logo-no-background.png';
@@ -371,7 +371,7 @@ const SocialLinks = styled.div`
 `;
 
 const Copyright = styled.p`
-  margin-top: 1rem;
+  margin-bottom: 1.5rem;
   font-size: 0.8rem;
   opacity: 0.7;
   line-height: 1.5;
@@ -576,7 +576,6 @@ const [isNavOpen, setIsNavOpen] = useState(false);
           ))}
           <FooterGrid>
             <FooterColumn>
-              <Tagline style={{margin: '0 0 1rem 0'}}>Mindful Meals. Moreish Moments.</Tagline>
               <Copyright>© {new Date().getFullYear()} <Link to="/">Mindful and Moreish</Link>.<br/>All Rights Reserved.</Copyright>
             </FooterColumn>
             <FooterColumn>
@@ -598,6 +597,7 @@ const [isNavOpen, setIsNavOpen] = useState(false);
               <SocialLinks>
                 <FooterLink to="mailto:info@mindfulandmoreish.com"><FaRegEnvelope /></FooterLink>
                 <FooterLink to="https://instagram.com/mindfulandmoreish" target="_blank" rel="noopener noreferrer"><FaInstagram /></FooterLink>
+                <FooterLink to="https://github.com/gdcodes/mindfulandmoreish" target="_blank" rel="noopener noreferrer"><FaGithub /></FooterLink>
               </SocialLinks>
             </FooterColumn>
           </FooterGrid>
