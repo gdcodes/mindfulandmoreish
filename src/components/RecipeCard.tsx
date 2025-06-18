@@ -3,7 +3,6 @@ import { Link } from 'gatsby';
 import styled from '@emotion/styled';
 import { GatsbyImage, getImage, IGatsbyImageData } from 'gatsby-plugin-image';
 import { ContentfulRecipe } from '../types';
-import { colors } from '../theme/colors';
 
 // Styled components
 const StyledCard = styled.div`
@@ -43,8 +42,8 @@ const Title = styled.h3`
   transition: color 0.2s ease-in-out;
   
   ${StyledCard}:hover & {
-    color: ${colors.primary};
-  }}
+    color: ${({ theme }) => theme.colors.primary};
+  }
 `;
 
 const MetaInfo = styled.div`

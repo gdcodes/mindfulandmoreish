@@ -33,8 +33,9 @@ const Section = styled.section`
 `;
 
 const SectionTitle = styled.h2`
-  color: ${({ theme }) => theme.colors.primary};
-  font-size: 1.8rem;
+  font-family: 'Merriweather', serif;
+  font-size: 2rem;
+  color: ${({ theme }) => theme.colors.textPrimary};
   margin-bottom: 1.5rem;
 `;
 

@@ -26,14 +26,16 @@ const LastUpdated = styled.p`
 const Section = styled.section`
   margin-bottom: 2rem;
   padding: 2rem;
-  background: ${({ theme }) => theme.colors.background};
+  background: ${({ theme }) => theme.colors.white};
   border-radius: 12px;
   box-shadow: 0 2px 12px ${({ theme }) => theme.colors.shadow};
+  line-height: 1.8;
 `;
 
 const SectionTitle = styled.h2`
-  color: ${({ theme }) => theme.colors.primary};
-  font-size: 1.8rem;
+  font-family: 'Merriweather', serif;
+  font-size: 2rem;
+  color: ${({ theme }) => theme.colors.textPrimary};
   margin-bottom: 1.5rem;
 `;
 

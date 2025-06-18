@@ -20,7 +20,7 @@
     "test": "jest",
     "test:coverage": "jest --coverage --coverageDirectory=coverage/jest",
     "cy:open": "cypress open",
-    "test:e2e": "start-server-and-test develop http://localhost:8000 'cypress run --browser chrome'",
+    "test:e2e": "start-server-and-test 'CYPRESS=true npm run develop' http://localhost:8000 'cypress run --browser chrome'",
     "coverage:combine": "node -e \"const fs=require('fs'); const { execSync } = require('child_process'); if(fs.existsSync('.nyc_output')) { execSync('nyc merge .nyc_output coverage/coverage-final.json && nyc report --report-dir=coverage --reporter=lcov --reporter=text', {stdio:'inherit'}); } else { console.log('No .nyc_output directory found — skipping merge'); }\"",
     "coverage:full": "rm -rf coverage .nyc_output && npm run test:coverage && npm run test:e2e && npm run coverage:combine && rm -rf .nyc_output coverage/jest"
   },
@@ -43,7 +43,8 @@
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "react-helmet": "^6.1.0",
-    "react-icons": "^5.5.0"
+    "react-icons": "^5.5.0",
+    "react-transition-group": "^4.4.5"
   },
   "devDependencies": {
     "@babel/preset-typescript": "^7.27.1",
@@ -59,6 +60,7 @@
     "@types/react": "^18.3.23",
     "@types/react-dom": "^18.3.7",
     "@types/react-helmet": "^6.1.11",
+    "@types/react-transition-group": "^4.4.12",
     "babel-jest": "^30.0.0",
     "babel-plugin-istanbul": "^7.0.0",
     "babel-preset-gatsby": "^3.14.0",
