@@ -1,5 +1,4 @@
-import Clarity from '@microsoft/clarity';
-import React, { useState, ReactNode, useEffect } from 'react';
+import React, { useState, ReactNode } from 'react';
 import { keyframes } from '@emotion/react';
 import styled from '@emotion/styled';
 import { Link } from 'gatsby';
@@ -542,12 +541,6 @@ const animatedIcons = [
 
 export const Layout = ({ children }: LayoutProps) => {
   const [isNavOpen, setIsNavOpen] = useState(false);
-
-    useEffect(() => {
-    if (window?.location?.hostname !== 'localhost' && process.env.CLARITY_PROJECT_ID) {
-      Clarity.init(process.env.CLARITY_PROJECT_ID);
-    }
-  }, []);
 
   const toggleNav = () => {
     setIsNavOpen(!isNavOpen);
