@@ -49,14 +49,14 @@ const config: GatsbyConfig = {
       resolve: `gatsby-source-contentful`,
       options: {
         spaceId: process.env.CONTENTFUL_SPACE_ID,
-        accessToken: process.env.CONTENTFUL_ACCESS_TOKEN
+        accessToken: process.env.CONTENTFUL_ACCESS_TOKEN,
       },
     },
     {
       resolve: `gatsby-plugin-clarity`,
       options: {
         clarity_project_id: process.env.CLARITY_PROJECT_ID,
-        enable_on_dev_env: false
+        enable_on_dev_env: false,
       },
     },
   ],
