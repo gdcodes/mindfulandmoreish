@@ -98,8 +98,9 @@ const AboutPage = () => {
         <Section>
           <h2>Join Our Community</h2>
           <p>
-            This blog is more than just a collection of recipes; it's a community. We would love to connect with you! 
-            Follow us on Instagram for daily inspiration, and feel free to reach out with any questions or just to say hello. 
+            This blog is more than just a collection of recipes; it's a community. 
+            Follow us on <a href="https://www.instagram.com/mindfulandmoreish" target="_blank" rel="noopener noreferrer" style={{ wordBreak: 'break-all' }}>Instagram</a> and share your culinary creations with <strong>#mindfulandmoreish</strong> for a chance to be featured on our page.
+            Feel free to reach out with any questions or just to say hello. 
             Happy cooking!
           </p>
         </Section>
