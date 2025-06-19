@@ -49,8 +49,7 @@ const config: GatsbyConfig = {
       resolve: `gatsby-source-contentful`,
       options: {
         spaceId: process.env.CONTENTFUL_SPACE_ID,
-        accessToken: process.env.CONTENTFUL_ACCESS_TOKEN,
-        forceFullSync: true,
+        accessToken: process.env.CONTENTFUL_ACCESS_TOKEN
       },
     },
     {
