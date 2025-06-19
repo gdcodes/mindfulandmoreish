@@ -53,6 +53,13 @@ const config: GatsbyConfig = {
         forceFullSync: true,
       },
     },
+    {
+      resolve: `gatsby-plugin-clarity`,
+      options: {
+        clarity_project_id: process.env.CLARITY_PROJECT_ID,
+        enable_on_dev_env: false
+      },
+    },
   ],
 };
 
