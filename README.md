@@ -105,6 +105,22 @@ This project is pre-configured for deployment on [Netlify](https://www.netlify.c
 3.  Netlify will automatically detect the `netlify.toml` file and use the correct build settings.
 4.  You will need to add your environment variables (`CONTENTFUL_SPACE_ID` and `CONTENTFUL_ACCESS_TOKEN`) in the Netlify UI under **Site settings > Build & deploy > Environment**.
 
+### 🔁 Automate Rebuilds When Contentful Content Changes
+
+To automatically trigger a site rebuild when content is updated in Contentful:
+
+Create a Netlify Build Hook:
+1. In Netlify, go to **Site settings → Build & deploy → Build hooks**.
+2. Click **Add build hook**, name it (e.g., "Contentful Update"), select the branch, and create it.
+3. Copy the **Build Hook URL**.
+
+Add a Webhook in Contentful:
+1. In Contentful, go to **Settings → Webhooks → Add webhook**.
+2. Paste the **Netlify Build Hook URL** and set your desired triggers (e.g., “Entry published”).
+3. Save the webhook.
+
+This will automatically rebuild and redeploy your site based on the triggers you set in Contentful.
+
 ---
 
 ## 🧪 Testing
