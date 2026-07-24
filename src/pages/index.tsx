@@ -141,7 +141,83 @@ const RecipeGrid = styled.div`
   gap: 2rem;
 `;
 
+const ResultsSummary = styled.p`
+  margin: 0 0 1rem;
+  color: ${({ theme }) => theme.colors.text};
+  font-weight: 500;
+`;
+
+const EmptyState = styled.div`
+  padding: 3rem 1.5rem;
+  text-align: center;
+  background: ${({ theme }) => theme.colors.white};
+  border: 2px solid ${({ theme }) => theme.colors.gray.light};
+  border-radius: 8px;
+  color: ${({ theme }) => theme.colors.text};
+`;
+
+const PaginationNav = styled.nav`
+  display: flex;
+  justify-content: center;
+  margin-top: 2.5rem;
+`;
+
+const PaginationList = styled.ul`
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+
+  @media (max-width: 480px) {
+    gap: 0.35rem;
+  }
+`;
+
+const PaginationButton = styled.button<{ isActive?: boolean }>`
+  min-width: 2.75rem;
+  min-height: 2.75rem;
+  padding: 0.65rem 0.95rem;
+  border: 2px solid
+    ${({ theme, isActive }) => isActive ? theme.colors.primary : theme.colors.gray.light};
+  border-radius: 8px;
+  background: ${({ theme, isActive }) => isActive ? theme.colors.primary : theme.colors.white};
+  color: ${({ theme }) => theme.colors.text};
+  cursor: pointer;
+  font-size: 1rem;
+  font-weight: 700;
+  transition: all 0.2s ease;
+
+  &:hover:not(:disabled),
+  &:focus:not(:disabled) {
+    border-color: ${({ theme }) => theme.colors.primary};
+    box-shadow: 0 0 0 2px ${({ theme }) => theme.colors.primary}20;
+    outline: none;
+  }
+
+  &:disabled {
+    cursor: not-allowed;
+    opacity: 0.45;
+  }
+
+  @media (max-width: 480px) {
+    min-width: 2.35rem;
+    min-height: 2.35rem;
+    padding: 0.5rem 0.65rem;
+  }
+`;
+
+const PaginationIcon = styled.span`
+  display: inline-block;
+  line-height: 1;
+`;
+
 type SortOption = 'newest' | 'oldest' | 'time' | 'shelf';
+
+const RECIPES_PER_PAGE = 12;
 
 interface IndexQueryData {
   allContentfulRecipe: {
@@ -172,6 +248,7 @@ const IndexPage: React.FC<IndexPageProps> = ({ data }) => {
   const [sortOrder, setSortOrder] = useState<SortOption>('newest');
   const [selectedTags, setSelectedTags] = useState<string[]>([]);
   const [allTags, setAllTags] = useState<string[]>([]);
+  const [currentPage, setCurrentPage] = useState(1);
 
   // Extract all unique tags from recipes
   useEffect(() => {
@@ -220,6 +297,27 @@ const IndexPage: React.FC<IndexPageProps> = ({ data }) => {
 
     return result;
   }, [recipes, searchTerm, sortOrder, selectedTags]);
+
+  useEffect(() => {
+    setCurrentPage(1);
+  }, [searchTerm, sortOrder, selectedTags]);
+
+  const totalPages = Math.ceil(filteredAndSortedRecipes.length / RECIPES_PER_PAGE);
+  const safeCurrentPage = totalPages > 0 ? Math.min(currentPage, totalPages) : 1;
+  const pageStartIndex = (safeCurrentPage - 1) * RECIPES_PER_PAGE;
+  const currentPageRecipes = filteredAndSortedRecipes.slice(
+    pageStartIndex,
+    pageStartIndex + RECIPES_PER_PAGE
+  );
+  const firstVisibleRecipe = filteredAndSortedRecipes.length === 0 ? 0 : pageStartIndex + 1;
+  const lastVisibleRecipe = Math.min(
+    pageStartIndex + RECIPES_PER_PAGE,
+    filteredAndSortedRecipes.length
+  );
+
+  const goToPage = (page: number) => {
+    setCurrentPage(Math.min(Math.max(page, 1), totalPages));
+  };
 
   return (
     <>
@@ -270,25 +368,87 @@ const IndexPage: React.FC<IndexPageProps> = ({ data }) => {
           </SortContainer>
         </FilterSortWrapper>
       </SearchAndSortContainer>
-      <RecipeGrid>
-        {filteredAndSortedRecipes.map(recipe => ({
-          ...recipe,
-          // Ensure required fields have default values if missing
-          ingredients: recipe.ingredients || [],
-          instructions: recipe.instructions || {
-            raw: JSON.stringify({ nodeType: 'document', data: {}, content: [] }),
-            references: []
-          },
-          // Ensure other required fields have defaults if needed
-          coolTime: recipe.coolTime || undefined,
-          shelfLife: recipe.shelfLife || undefined,
-          fridgeLife: recipe.fridgeLife || undefined,
-          freezerLife: recipe.freezerLife || undefined,
-          thumbnail: recipe.thumbnail || undefined
-        })).map(recipe => (
-          <RecipeCard key={recipe.id} recipe={recipe} />
-        ))}
-      </RecipeGrid>
+      <ResultsSummary aria-live="polite" data-testid="results-summary">
+        {filteredAndSortedRecipes.length > 0
+          ? `Showing ${firstVisibleRecipe}-${lastVisibleRecipe} of ${filteredAndSortedRecipes.length} recipes`
+          : 'No recipes found'}
+      </ResultsSummary>
+
+      {currentPageRecipes.length > 0 ? (
+        <>
+          <RecipeGrid>
+            {currentPageRecipes.map(recipe => ({
+              ...recipe,
+              // Ensure required fields have default values if missing
+              ingredients: recipe.ingredients || [],
+              instructions: recipe.instructions || {
+                raw: JSON.stringify({ nodeType: 'document', data: {}, content: [] }),
+                references: []
+              },
+              // Ensure other required fields have defaults if needed
+              coolTime: recipe.coolTime || undefined,
+              shelfLife: recipe.shelfLife || undefined,
+              fridgeLife: recipe.fridgeLife || undefined,
+              freezerLife: recipe.freezerLife || undefined,
+              thumbnail: recipe.thumbnail || undefined
+            })).map(recipe => (
+              <RecipeCard key={recipe.id} recipe={recipe} />
+            ))}
+          </RecipeGrid>
+
+          {totalPages > 1 && (
+            <PaginationNav aria-label="Recipe pagination">
+              <PaginationList>
+                <li>
+                  <PaginationButton
+                    type="button"
+                    onClick={() => goToPage(safeCurrentPage - 1)}
+                    disabled={safeCurrentPage === 1}
+                    aria-label="Previous page"
+                  >
+                    <PaginationIcon aria-hidden="true">
+                      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                        <path d="M15 18l-6-6 6-6" />
+                      </svg>
+                    </PaginationIcon>
+                  </PaginationButton>
+                </li>
+                {Array.from({ length: totalPages }, (_, index) => index + 1).map(page => (
+                  <li key={page}>
+                    <PaginationButton
+                      type="button"
+                      onClick={() => goToPage(page)}
+                      isActive={page === safeCurrentPage}
+                      aria-current={page === safeCurrentPage ? 'page' : undefined}
+                      aria-label={`Page ${page}`}
+                    >
+                      {page}
+                    </PaginationButton>
+                  </li>
+                ))}
+                <li>
+                  <PaginationButton
+                    type="button"
+                    onClick={() => goToPage(safeCurrentPage + 1)}
+                    disabled={safeCurrentPage === totalPages}
+                    aria-label="Next page"
+                  >
+                    <PaginationIcon aria-hidden="true">
+                      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                        <path d="M9 18l6-6-6-6" />
+                      </svg>
+                    </PaginationIcon>
+                  </PaginationButton>
+                </li>
+              </PaginationList>
+            </PaginationNav>
+          )}
+        </>
+      ) : (
+        <EmptyState>
+          Try adjusting your search or filters to find a recipe.
+        </EmptyState>
+      )}
     </>
   );
 };
