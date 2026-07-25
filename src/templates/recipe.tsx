@@ -5,6 +5,7 @@ import { documentToReactComponents, Options } from '@contentful/rich-text-react-
 import { BLOCKS, Block, Inline } from '@contentful/rich-text-types';
 import { Seo } from '../components/Seo';
 import { PhotoGallery } from '../components/PhotoGallery';
+import RecipeScrollLeaves from '../components/RecipeScrollLeaves';
 import { ContentfulRecipe } from '../types';
 import { FaRegClock, FaFireAlt, FaSnowflake, FaHourglassHalf, FaBox, FaTemperatureLow, FaWind } from 'react-icons/fa';
 import { IGatsbyImageData } from 'gatsby-plugin-image';
@@ -180,6 +181,7 @@ const RecipeTemplate: React.FC<RecipeTemplateProps> = ({ data }) => {
   return (
     <>
       <Seo title={recipe.title} description={`A recipe for ${recipe.title}`} />
+      <RecipeScrollLeaves />
       <RecipeContainer>
         <RecipeHeader>
           <h1>{recipe.title}</h1>
