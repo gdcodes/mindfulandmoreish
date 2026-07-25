@@ -12,6 +12,11 @@ import { IGatsbyImageData } from 'gatsby-plugin-image';
 const RecipeContainer = styled.div`
   max-width: 800px;
   margin: 0 auto;
+  padding: 0 1rem;
+
+  @media (max-width: 640px) {
+    padding: 0 0.75rem;
+  }
 `;
 
 const RecipeHeader = styled.header`
@@ -19,7 +24,14 @@ const RecipeHeader = styled.header`
   margin-bottom: 2rem;
   
   h1 {
-    font-size: 3rem;
+    font-size: clamp(2.15rem, 10vw, 3rem);
+    line-height: 1.18;
+    overflow-wrap: anywhere;
+    text-wrap: balance;
+  }
+
+  @media (max-width: 640px) {
+    margin-bottom: 1.25rem;
   }
 `;
 
@@ -32,10 +44,19 @@ const Section = styled.section`
   border: 1px solid ${({ theme }) => theme.colors.gray.medium};
   position: relative;
   border-left: 5px solid ${({ theme }) => theme.colors.primary};
+
+  @media (max-width: 640px) {
+    margin: 1.5rem 0;
+    padding: 1.25rem;
+    border-radius: 8px;
+    border-left-width: 4px;
+    box-shadow: 0 4px 14px ${({ theme }) => theme.colors.shadow};
+  }
 `;
 
 const PlayfulHeading = styled.h2`
-  font-size: 2.2rem;
+  font-size: clamp(1.55rem, 7vw, 2.2rem);
+  line-height: 1.2;
   margin-bottom: 1.5rem;
   color: ${({ theme }) => theme.colors.textPrimary};
   font-family: 'Merriweather', serif;
@@ -46,6 +67,46 @@ const PlayfulHeading = styled.h2`
   gap: 0.5em;
   border-bottom: 2px solid ${({ theme }) => theme.colors.nut};
   padding-bottom: 0.8rem;
+  overflow-wrap: anywhere;
+
+  @media (max-width: 640px) {
+    margin-bottom: 1rem;
+    padding-bottom: 0.65rem;
+    gap: 0.35em;
+    letter-spacing: 0;
+  }
+`;
+
+const RecipeParagraph = styled.p`
+  margin: 0 0 1.25rem;
+  color: ${({ theme }) => theme.colors.text};
+  font-family: 'Merriweather', serif;
+  font-size: 1.06rem;
+  line-height: 1.75;
+  overflow-wrap: anywhere;
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+
+  @media (max-width: 640px) {
+    margin-bottom: 1rem;
+    font-size: 1rem;
+    line-height: 1.72;
+  }
+`;
+
+const RichTextHeading = styled.h3`
+  margin: 1.75rem 0 0.75rem;
+  color: ${({ theme }) => theme.colors.textPrimary};
+  font-family: 'Merriweather', serif;
+  font-size: clamp(1.25rem, 5vw, 1.6rem);
+  line-height: 1.3;
+  overflow-wrap: anywhere;
+
+  &:first-of-type {
+    margin-top: 0;
+  }
 `;
 
 const MetaData = styled.div`
@@ -92,12 +153,21 @@ const StyledBulletedList = styled.ul`
   li {
     position: relative;
     padding-left: 1.8em;
-    margin-bottom: 0.8em; /* Reduced spacing */
+    margin-bottom: 0.9em;
     font-size: 1.05em;
-    line-height: 1.6;
+    line-height: 1.65;
     color: ${({ theme }) => theme.colors.text};
     font-family: 'Merriweather', serif;
+    overflow-wrap: anywhere;
   }
+
+  li > p {
+    margin: 0;
+    color: inherit;
+    font: inherit;
+    line-height: inherit;
+  }
+
   li::before {
     content: '';
     position: absolute;
@@ -107,6 +177,24 @@ const StyledBulletedList = styled.ul`
     height: 0.6em;
     border-radius: 50%;
     background-color: ${({ theme }) => theme.colors.secondary};
+  }
+
+  @media (max-width: 640px) {
+    margin: 1rem 0;
+
+    li {
+      padding-left: 1.45em;
+      margin-bottom: 0.85em;
+      font-size: 1rem;
+      line-height: 1.7;
+    }
+
+    li::before {
+      left: 0.15em;
+      top: 0.7em;
+      width: 0.5em;
+      height: 0.5em;
+    }
   }
 `;
 
@@ -118,13 +206,22 @@ const StyledOrderedList = styled.ol`
 
   li {
     position: relative;
-    padding-left: 2.2em;
+    padding-left: 2.45em;
     margin-bottom: 1.1em;
     font-size: 1.08em;
     line-height: 1.7;
     color: ${({ theme }) => theme.colors.text};
     font-family: 'Merriweather', serif;
+    overflow-wrap: anywhere;
   }
+
+  li > p {
+    margin: 0;
+    color: inherit;
+    font: inherit;
+    line-height: inherit;
+  }
+
   li::before {
     content: counter(item) '.';
     counter-increment: item;
@@ -137,11 +234,30 @@ const StyledOrderedList = styled.ol`
     font-size: 1.1em;
     line-height: 1.7;
   }
+
+  @media (max-width: 640px) {
+    margin: 1rem 0;
+
+    li {
+      padding-left: 2em;
+      margin-bottom: 1em;
+      font-size: 1rem;
+      line-height: 1.72;
+    }
+
+    li::before {
+      left: 0.2em;
+    }
+  }
 `;
 
 // Custom render options for all lists
 const renderOptions: Options = {
   renderNode: {
+    [BLOCKS.PARAGRAPH]: (node: Block | Inline, children) => <RecipeParagraph>{children}</RecipeParagraph>,
+    [BLOCKS.HEADING_2]: (node: Block | Inline, children) => <RichTextHeading>{children}</RichTextHeading>,
+    [BLOCKS.HEADING_3]: (node: Block | Inline, children) => <RichTextHeading>{children}</RichTextHeading>,
+    [BLOCKS.HEADING_4]: (node: Block | Inline, children) => <RichTextHeading>{children}</RichTextHeading>,
     [BLOCKS.UL_LIST]: (node: Block | Inline, children) => <StyledBulletedList>{children}</StyledBulletedList>,
     [BLOCKS.OL_LIST]: (node: Block | Inline, children) => <StyledOrderedList>{children}</StyledOrderedList>,
   },
