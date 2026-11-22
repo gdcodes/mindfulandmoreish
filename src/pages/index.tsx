@@ -280,10 +280,10 @@ const IndexPage: React.FC<IndexPageProps> = ({ data }) => {
             references: []
           },
           // Ensure other required fields have defaults if needed
-          coolTime: recipe.coolTime || undefined,
-          shelfLife: recipe.shelfLife || undefined,
-          fridgeLife: recipe.fridgeLife || undefined,
-          freezerLife: recipe.freezerLife || undefined,
+          coolTime: recipe.coolTime ?? undefined,
+          shelfLife: recipe.shelfLife ?? undefined,
+          fridgeLife: recipe.fridgeLife ?? undefined,
+          freezerLife: recipe.freezerLife ?? undefined,
           thumbnail: recipe.thumbnail || undefined
         })).map(recipe => (
           <RecipeCard key={recipe.id} recipe={recipe} />

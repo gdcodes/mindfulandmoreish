@@ -174,8 +174,8 @@ export const RecipeCard: React.FC<RecipeCardProps> = ({ recipe }) => {
           <Title>{title}</Title>
           <MetaInfo>
             <span>Ready in: {prepTime + cookTime + (coolTime || 0)} min</span>
-            {shelfLife && <span>Shelf: {shelfLife} days</span>}
-            {fridgeLife && <span>Fridge: {fridgeLife} days</span>}
+            {shelfLife != null ? <span>Shelf: {shelfLife} days</span> : null}
+            {fridgeLife != null ? <span>Fridge: {fridgeLife} days</span> : null}
           </MetaInfo>
           <TagContainer>
             {tags?.map((tag) => (
@@ -188,4 +188,4 @@ export const RecipeCard: React.FC<RecipeCardProps> = ({ recipe }) => {
       </Card>
     </CardLinkWrapper>
   );
-}; 
+};
